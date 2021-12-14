@@ -1,0 +1,26 @@
+// 单元测试，文件名 _test.go 命名，即通知 `go test` 命令这个文件包含测试用例
+
+package greetings
+
+import (
+	"regexp"
+	"testing"
+)
+
+func TestHelloName(t *testing.T) {
+	name := "Gladys"
+	want := regexp.MustCompile(`\b` + name + `\b`)
+
+	msg, err := Hello("Gladys")
+
+	if !want.MatchString(msg) || err != nil {
+		t.Fatalf(`Hello("Gladys") = %q, %v, want match for %#q, nil`, msg, err, want)
+	}
+}
+
+func TestHelloEmpty(t *testing.T) {
+	msg, err := Hello("")
+	if msg != "" || err == nil {
+		t.Fatalf(`Hello("") = %q, %v, want "", error`, msg, err)
+	}
+}
