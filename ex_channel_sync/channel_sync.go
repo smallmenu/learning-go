@@ -23,6 +23,7 @@ func main() {
 
 	// 程序将阻塞在这里，直到收到 worker 使用通道发送的通知
 	go worker(done)
+
 	// 如果这行代码移除，程序可能在 worker 运行前就结束了
 	<-done
 }
