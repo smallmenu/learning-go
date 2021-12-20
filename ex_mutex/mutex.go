@@ -17,6 +17,7 @@ func main() {
 
 	var writeOps uint64
 
+	// 启动 100 个协程，重复读取 state 的值
 	for r := 0; r < 100; r++ {
 		go func() {
 			total := 0
@@ -28,10 +29,12 @@ func main() {
 				mutex.Unlock()
 
 				atomic.AddUint64(&readOps, 1)
+				//time.Sleep(time.Millisecond)
 			}
 		}()
 	}
 
+	// 启动 10 个协程，模拟写入
 	for w := 0; w < 10; w++ {
 		go func() {
 			for {
@@ -44,6 +47,7 @@ func main() {
 				mutex.Unlock()
 
 				atomic.AddUint64(&writeOps, 1)
+				//time.Sleep(time.Millisecond)
 			}
 		}()
 	}
