@@ -29,7 +29,7 @@ func main() {
 				mutex.Unlock()
 
 				atomic.AddUint64(&readOps, 1)
-				//time.Sleep(time.Millisecond)
+				time.Sleep(time.Millisecond)
 			}
 		}()
 	}
@@ -47,7 +47,7 @@ func main() {
 				mutex.Unlock()
 
 				atomic.AddUint64(&writeOps, 1)
-				//time.Sleep(time.Millisecond)
+				time.Sleep(time.Millisecond)
 			}
 		}()
 	}
