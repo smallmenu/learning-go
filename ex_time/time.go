@@ -49,6 +49,7 @@ func main() {
 	fmt.Println(offset)
 
 	// 时区设置，当前 Now() 获取的是本地时间，所以结果是一样的
+	// time.Local 会返回当前时区的常量
 	fmt.Println(now.Format(lay1))
 	cstZone := time.FixedZone("CST", 8*3600)
 	now.In(cstZone).Format(lay1)
@@ -67,7 +68,7 @@ func main() {
 	fmt.Println(utcUnix.Format(lay2))
 
 	// 正确的姿势是使用 ParseInLocation()
-	cstTime, _ := time.ParseInLocation(lay1, dtStr, cstZone)
+	cstTime, _ := time.ParseInLocation(lay1, dtStr, time.Local)
 	cstUnix := time.Unix(cstTime.Unix(), 0)
 	fmt.Println(cstTime.Format(lay2))
 	fmt.Println(cstTime.Unix())
@@ -82,7 +83,7 @@ func main() {
 	fmt.Println(uTime.Format(lay1))
 
 	uStr := uTime.Format(lay1)
-	us, _ := time.ParseInLocation(lay1, uStr, cstZone)
+	us, _ := time.ParseInLocation(lay1, uStr, time.Local)
 	fmt.Println(us.Format(lay1))
 	fmt.Println(us.Unix())
 }

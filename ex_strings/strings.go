@@ -32,7 +32,7 @@ func main() {
 	lenByte := utf8.RuneCountInString(str)
 
 	// 字符串转数值
-	// Atoi 等同于 ParseInt(str, 10, 0)
+	// Atoi() 等同于 ParseInt(str, 10, 0)，更简介
 	atoi, _ := strconv.Atoi(strInt)
 	parseInt, _ := strconv.ParseInt(strInt, 10, 64)
 	// 数值转字符串
