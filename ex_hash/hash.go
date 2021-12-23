@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	str := "123456"
+	str := ""
 
 	md5Bytes := md5.Sum([]byte(str))
 	md5Str := fmt.Sprintf("%x", md5Bytes)
