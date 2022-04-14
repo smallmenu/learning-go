@@ -9,7 +9,7 @@ func main() {
 
 	fmt.Println(a)
 
-	var b, c int = 1, 2
+	var b, c = 1, 2
 	fmt.Println(b, c)
 
 	// 声明未初始化，变量会初始化为：零值
