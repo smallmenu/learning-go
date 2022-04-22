@@ -11,7 +11,7 @@ func main() {
 	// exec a b c d
 	args := os.Args
 
-	// 第一个参数是改程序的路径
+	// 第一个参数是该程序的路径
 	fmt.Println(args)
 	// [1:] 是全部的参数
 	fmt.Println(args[1:])

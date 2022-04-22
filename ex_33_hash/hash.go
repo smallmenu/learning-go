@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"crypto/sha1"
 	"crypto/sha256"
+	"encoding/hex"
 	"fmt"
 )
 
@@ -14,6 +15,8 @@ func main() {
 	md5Str := fmt.Sprintf("%x", md5Bytes)
 	fmt.Println(len(md5Str))
 	fmt.Println(md5Str)
+
+	fmt.Println(hex.EncodeToString(md5Bytes[:]))
 
 	sha1Bytes := sha1.Sum([]byte(str))
 	sha1Str := fmt.Sprintf("%x", sha1Bytes)
