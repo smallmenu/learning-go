@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	// 声明 5 个元素的数组，默认会初始化 0 值
@@ -26,4 +29,5 @@ func main() {
 	}
 	fmt.Println("2d: ", twoD)
 
+	fmt.Println(reflect.TypeOf(a))
 }

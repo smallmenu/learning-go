@@ -63,7 +63,9 @@ func main() {
 	dtStr := "2017年04月07日 16时30分47秒"
 	utcTime, _ := time.Parse(lay1, dtStr)
 	utcUnix := time.Unix(utcTime.Unix(), 0)
+	// 直接Format打印是对的
 	fmt.Println(utcTime.Format(lay2))
+	// 把 UTC 时间戳当成本地的时间戳，所以结果不一致
 	fmt.Println(utcTime.Unix())
 	fmt.Println(utcUnix.Format(lay2))
 

@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	// 切片，实际可以理解为动态数组，需要使用内置函数 make() 来创建，默认值依然为 0 值
