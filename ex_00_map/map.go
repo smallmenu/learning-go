@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	// 创建一个空的 map
@@ -10,6 +13,7 @@ func main() {
 	m["k1"] = 7
 	m["k2"] = 13
 	fmt.Println(m)
+	fmt.Println(reflect.TypeOf(m))
 
 	// 获取
 	v1 := m["k2"]
