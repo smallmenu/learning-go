@@ -27,9 +27,12 @@ func main() {
 	fmt.Println(m)
 
 	// 获取值的第二个返回值，表示是否存在该健
-	_, prs := m["k2"]
-	fmt.Println(prs)
+	_, exist := m["k2"]
+	fmt.Println(exist)
 
-	n := map[string]int{"fool": 1, "bar": 2}
+	n := map[string]string{"fool": "a", "bar": "b"}
 	fmt.Println(n)
+
+	notexist := n["a"]
+	fmt.Println(notexist)
 }

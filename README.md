@@ -1,2 +1,3 @@
 # learning-go
-learning-go
+
+Learning Golang by examples.

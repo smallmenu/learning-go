@@ -16,7 +16,6 @@ func main() {
 			} else {
 				fmt.Println("received all jobs")
 				done <- true
-				return
 			}
 		}
 	}()

@@ -1,11 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 // 结构体 struct 是带类型的字段的集合
 type person struct {
 	name string
 	age  int
+}
+
+type student struct {
+	person
+	id int
 }
 
 func main() {
@@ -27,4 +35,14 @@ func main() {
 	sp.age = 99
 	fmt.Println(sp.age)
 	fmt.Println(p1.age)
+
+	// 结构体序列化为 Json
+	s2 := student{}
+	s2.name = "Bob"
+	s2.age = 20
+	s2.id = 1
+	s2json, e := json.Marshal(s2)
+	fmt.Println(e)
+	fmt.Println(string(s2json))
+
 }
