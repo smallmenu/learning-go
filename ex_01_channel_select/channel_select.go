@@ -10,7 +10,7 @@ func main() {
 	c2 := make(chan string)
 
 	go func() {
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second * 1)
 
 		c1 <- "one"
 	}()
@@ -34,8 +34,8 @@ func main() {
 	// 选择器 select 用途之一就是实现超时
 	select {
 	case res := <-c1:
-		fmt.Println(res)
-	case <-time.After(time.Second):
+		fmt.Println("received", res)
+	case <-time.After(time.Second * 2):
 		fmt.Println("timeout 1")
 	}
 }
