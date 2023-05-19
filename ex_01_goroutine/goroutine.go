@@ -6,7 +6,7 @@ import (
 )
 
 func f(from string) {
-	for i := 0; i < 5; i++ {
+	for i := 0; i < 10; i++ {
 		fmt.Println(from, ":", i)
 	}
 }
@@ -18,9 +18,13 @@ func main() {
 	go f("goroutine")
 
 	go func(msg string) {
-		fmt.Println(msg)
+		for i := 0; i < 10; i++ {
+			fmt.Println(msg)
+		}
 	}("going")
 
-	time.Sleep(time.Second * 5)
+	// 主程序要停留一段时间否则看不到
+	time.Sleep(time.Second * 1)
+
 	fmt.Println("done")
 }
