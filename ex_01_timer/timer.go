@@ -22,7 +22,7 @@ func main() {
 	}()
 	stop2 := timer2.Stop()
 	if stop2 {
-		fmt.Println("timer2 stoped")
+		fmt.Println("timer2 stopped")
 	}
 
 }

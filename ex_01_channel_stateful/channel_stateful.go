@@ -57,7 +57,7 @@ func main() {
 		}()
 	}
 
-	for w := 0; w < 10; w++ {
+	for w := 0; w < 100; w++ {
 		go func() {
 			for {
 				write := writeOp{
