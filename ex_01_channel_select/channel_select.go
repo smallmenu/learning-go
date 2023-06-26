@@ -31,7 +31,7 @@ func main() {
 		}
 	}
 
-	// 选择器 select 用途之一就是实现超时
+	// 选择器 select 用途之一就是实现超时，下面等待 c1 通道结果，只等待 2 秒
 	select {
 	case res := <-c1:
 		fmt.Println("received", res)
