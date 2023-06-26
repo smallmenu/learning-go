@@ -27,8 +27,16 @@ func main() {
 		panic(err)
 	}
 
+	//  删除一个文件或者空的目录，如果非空会返回一个错误
+	defer func() {
+		err := os.Remove("subdir")
+		if err != nil {
+			panic(err)
+		}
+	}()
+
 	// 删除一个目录，等同于 Unix 的 rm -rf，不检测目录是否为空， 慎用
-	defer os.RemoveAll("subdir")
+	//defer os.RemoveAll("subdir")
 }
 
 func Mkdir(dir string, perm os.FileMode) error {
