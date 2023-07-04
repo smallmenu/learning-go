@@ -32,17 +32,17 @@ func WithCancel() {
 	}()
 
 	// 模拟操作，等待两秒
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 3)
 
 	// 通知子协程退出，调用 cancel 函数时，goroutine会收到取消通知并结束执行
 	cancel()
 
-	// 延迟退出主协程，为了看到通知的信息
-	time.Sleep(time.Second * 1)
+	// 延迟退出主协程，为了看到通知后的信息，否则可能来不及打印
+	time.Sleep(time.Millisecond * 100)
 }
 
 func WithDeadline() {
-	// 这个例子与上面的例子类似，只是使用 WithDeadline 创建了一个带有截止时间的 context
+	// 这个例子与上面的例子类似，只是使用 WithDeadline 创建了一个带有截止时间的 context，不用手动的通知 cancel()
 	d := time.Now().Add(3 * time.Second)
 	ctx, cancel := context.WithDeadline(context.Background(), d)
 	defer cancel()
@@ -61,6 +61,6 @@ func WithDeadline() {
 		}
 	}()
 
-	// 模拟一些操作，比截止时间更长
+	// 模拟一些操作，比截止时间更长，为了看到通知后的信息，否则可能来不及打印
 	time.Sleep(5 * time.Second)
 }
