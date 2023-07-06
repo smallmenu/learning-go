@@ -9,7 +9,9 @@ import (
 func main() {
 	//WithCancel()
 
-	WithDeadline()
+	//WithDeadline()
+
+	WithValue()
 }
 
 func WithCancel() {
@@ -63,4 +65,19 @@ func WithDeadline() {
 
 	// 模拟一些操作，比截止时间更长，为了看到通知后的信息，否则可能来不及打印
 	time.Sleep(5 * time.Second)
+}
+
+func WithValue() {
+	// WithValue 创建一个带有 key-value 的 context，可以通过 Value 函数获取 value
+	key := "name"
+	ctx := context.WithValue(context.Background(), "name", "gopher")
+
+	go func() {
+		if v := ctx.Value(key); v != nil {
+			fmt.Println("Value:", v)
+		}
+	}()
+
+	// 模拟一些操作，比截止时间更长，为了看到通知后的信息，否则可能来不及打印
+	time.Sleep(1 * time.Second)
 }
