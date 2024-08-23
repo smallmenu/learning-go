@@ -1,10 +1,10 @@
 package main
 
 import (
-	"crypto/md5"
-	"crypto/sha1"
-	"crypto/sha256"
-	"encoding/hex"
+	"crypto/md5"    // MD5的哈希算法
+	"crypto/sha1"   // SHA1的哈希算法
+	"crypto/sha256" // SHA256的哈希算法
+	"encoding/hex"  // 提供 编码 和 解码 十六进制字符串的功能。
 	"fmt"
 )
 

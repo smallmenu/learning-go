@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/base64"
+	"encoding/base64" // 提供 Base64 编码和解码的功能
 	"fmt"
 )
 
@@ -15,7 +15,7 @@ func main() {
 	fmt.Println(base64Url)
 
 	// 会将 +、/ 替换为 -、_
-	urlSafe := "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu"
+	urlSafe := "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&tn=baidu+"
 	base64UrlSafe := base64.URLEncoding.EncodeToString([]byte(urlSafe))
 	fmt.Println(base64UrlSafe)
 

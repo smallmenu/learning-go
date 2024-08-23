@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"os" // 提供操作系统功能接口，包括文件和目录操作。
 )
 
 func main() {

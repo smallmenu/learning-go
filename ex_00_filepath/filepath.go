@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"path/filepath"
+	"path/filepath" // 提供了一些函数来操作 文件路径
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	fmt.Println("Base(p):", filepath.Base(p))
 
 	// 扩展名
-	fmt.Println("Base(p):", filepath.Ext(p))
+	fmt.Println("extend(p):", filepath.Ext(p))
 
 	// 计算相对路径
 	rel, err := filepath.Rel("a/b", "a/b/t/file")

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // intSeq 函数返回一个在其函数体内定义的匿名函数。返回的函数使用闭包的方式隐藏变量 i，
 func intSeq() func() int {
@@ -19,4 +22,5 @@ func main() {
 	fmt.Println(nextInt())
 	fmt.Println(nextInt())
 	fmt.Println(nextInt())
+	fmt.Println(reflect.TypeOf(nextInt))
 }
