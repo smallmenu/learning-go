@@ -5,87 +5,75 @@ import (
 	"time"
 )
 
+// 自定义时间格式常量
 const (
-	lay1 = "2006年01月02日 15时04分05秒"
-	lay2 = "2006-01-02 15:04:05"
-	lay3 = "2006-01-02 15:04:05.999999"
+	lay1 = "2006年01月02日 15时04分05秒"      // 中文格式
+	lay2 = "2006-01-02 15:04:05"        // 常用格式
+	lay3 = "2006-01-02 15:04:05.999999" // 精确到微秒的格式
 )
 
 func main() {
-	// Now() 获取的 Time 和当前系统的时区一样
-	now := time.Now()
-	fmt.Println(now)
+	// 1. 获取当前时间
+	now := time.Now() // Now() 获取当前系统时间
+	fmt.Println("当前时间 (默认格式):", now)
 
-	// Month 返回的是英文的
-	fmt.Println(now.Year())
-	fmt.Println(now.Month())
-	fmt.Println(now.Day())
-	fmt.Println(now.Hour())
+	// 2. 获取时间的各个部分
+	fmt.Println("当前年份:", now.Year())
+	fmt.Println("当前月份 (英文):", now.Month())
+	fmt.Println("当前日期 (几号):", now.Day())
+	fmt.Println("当前小时:", now.Hour())
 
-	// Unix() 返回的是 1970 年到现在的时间戳
-	fmt.Println(now.Unix())
-	// 毫秒
-	fmt.Println(now.UnixMilli())
-	// 纳秒
-	fmt.Println(now.UnixNano())
+	// 3. 获取时间戳
+	fmt.Println("当前时间的秒级时间戳:", now.Unix())       // 返回从1970年到现在的秒数
+	fmt.Println("当前时间的毫秒级时间戳:", now.UnixMilli()) // 返回从1970年到现在的毫秒数
+	fmt.Println("当前时间的纳秒级时间戳:", now.UnixNano())  // 返回从1970年到现在的纳秒数
 
-	// RFC 3339 时间格式
-	fmt.Println(now.Format(time.RFC3339))
+	// 4. 使用RFC3339标准格式输出时间
+	fmt.Println("当前时间 (RFC3339标准格式):", now.Format(time.RFC3339))
 
-	// 自定义格式化时间
+	// 5. 使用自定义格式化时间输出
 	dt1 := now.Format(lay1)
 	dt2 := now.Format(lay2)
 	dt3 := now.Format(lay3)
-	fmt.Println(dt1)
-	fmt.Println(dt2)
-	fmt.Println(dt3)
+	fmt.Println("当前时间 (中文格式):", dt1)
+	fmt.Println("当前时间 (常用格式):", dt2)
+	fmt.Println("当前时间 (精确到微秒):", dt3)
 
 	fmt.Println("---")
 
-	// 返回 now 所在的时区和偏移
-	zone, offset := now.Zone()
-	now.Local().Zone()
-	fmt.Println(zone)
-	fmt.Println(offset)
+	// 6. 获取当前时间的时区信息
+	zone, offset := now.Zone() // Zone() 获取当前时间的时区和偏移量
+	fmt.Println("当前时区:", zone)
+	fmt.Println("当前时区偏移秒数:", offset)
 
-	// 时区设置，当前 Now() 获取的是本地时间，所以结果是一样的
-	// time.Local 会返回当前时区的常量
-	fmt.Println(now.Format(lay1))
-	cstZone := time.FixedZone("CST", 8*3600)
-	now.In(cstZone).Format(lay1)
+	// 7. 时区转换
+	cstZone := time.FixedZone("CST", 8*3600) // 创建一个固定的时区 CST
+	fmt.Println("当前时间 (中文格式):", now.Format(lay1))
+	fmt.Println("当前时间转换为CST时区 (中文格式):", now.In(cstZone).Format(lay1))
 
 	fmt.Println("---")
 
-	// 字符串解析
-	// 当前时区是 CST +8
-	// 注意：Parse() 解析是返回的是 UTC 时区的 Time，而 Format() 会自动转换为当前时区打印，所以打印结果是对的
-	// 而 time.Unix() 的参数会以当前时区的时间戳构造 Time（实际就是把 UTC 时间戳当成本地的时间戳），所以再次打印结果是错的
+	// 8. 字符串解析成时间对象
 	dtStr := "2017年04月07日 16时30分47秒"
-	utcTime, _ := time.Parse(lay1, dtStr)
-	utcUnix := time.Unix(utcTime.Unix(), 0)
-	// 直接Format打印是对的
-	fmt.Println(utcTime.Format(lay2))
-	// 把 UTC 时间戳当成本地的时间戳，所以结果不一致
-	fmt.Println(utcTime.Unix())
-	fmt.Println(utcUnix.Format(lay2))
+	utcTime, _ := time.Parse(lay1, dtStr) // Parse() 返回 UTC 时间
+	fmt.Println("解析的 UTC 时间 (常用格式):", utcTime.Format(lay2))
+	fmt.Println("解析的 UTC 时间戳 (秒级):", utcTime.Unix())
 
-	// 正确的姿势是使用 ParseInLocation()
-	cstTime, _ := time.ParseInLocation(lay1, dtStr, time.Local)
-	cstUnix := time.Unix(cstTime.Unix(), 0)
-	fmt.Println(cstTime.Format(lay2))
-	fmt.Println(cstTime.Unix())
-	fmt.Println(cstUnix.Format(lay2))
+	// 9. 正确的时间解析方式
+	cstTime, _ := time.ParseInLocation(lay1, dtStr, time.Local) // ParseInLocation() 返回本地时间
+	fmt.Println("解析的 CST 时间 (常用格式):", cstTime.Format(lay2))
+	fmt.Println("解析的 CST 时间戳 (秒级):", cstTime.Unix())
 
 	fmt.Println("---")
 
-	// 字符串与时间戳互转，1609527845 -> 2021年01月02日 03时04分05秒
-	// 同样需要使用 ParseInLocation
+	// 10. 时间戳转字符串，字符串转时间戳
 	unixstamp := 1609527845
 	uTime := time.Unix(int64(unixstamp), 0)
-	fmt.Println(uTime.Format(lay1))
+	fmt.Println("Unix 时间戳转字符串 (中文格式):", uTime.Format(lay1))
 
+	// 字符串转回时间戳
 	uStr := uTime.Format(lay1)
 	us, _ := time.ParseInLocation(lay1, uStr, time.Local)
-	fmt.Println(us.Format(lay1))
-	fmt.Println(us.Unix())
+	fmt.Println("字符串转回 Unix 时间戳 (中文格式):", us.Format(lay1))
+	fmt.Println("字符串转回 Unix 时间戳 (秒级):", us.Unix())
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/json"
+	"encoding/json" // JSON 包
 	"fmt"
 )
 
@@ -11,7 +11,7 @@ type response1 struct {
 	Fruits []string
 }
 
-// `json` 标签可以自定义键名
+// `json` 标签可以自定义键名(json输出时使用)
 type response2 struct {
 	State  bool     `json:"state"`
 	Page   int      `json:"page"`
@@ -23,10 +23,14 @@ func main() {
 	ints := []int{3, 2, 4}
 	maps := map[string]string{"k1": "v1，中文", "k2": "v2", "k3": "v3"}
 
-	strsJson, _ := json.Marshal(strs)
+	strsJson, _ := json.Marshal(strs) // 将字符串切片转换为 JSON 格式的byte切片
 	intsJson, _ := json.Marshal(ints)
 	mapsJson, _ := json.Marshal(maps)
-	fmt.Println(string(strsJson))
+
+	fmt.Println(strs)             // 打印字符串切片
+	fmt.Println(strsJson)         // 打印JSON格式的 byte切片
+	fmt.Println(string(strsJson)) // 打印JSON格式的 字符串
+
 	fmt.Println(string(intsJson))
 	fmt.Println(string(mapsJson))
 

@@ -1,19 +1,19 @@
 package main
 
 import (
-	"flag"
+	"flag" // 解析命令行参数
 	"fmt"
 	"os"
 	"strings"
 )
 
 func main() {
-	// exec a b c d
+	// 假设程序以 exec a b c d 的方式运行
 	args := os.Args
 
 	// 第一个参数是该程序的路径
 	fmt.Println(args)
-	// [1:] 是全部的参数
+	// [1:] 是全部的参数，即["a", "b", "c", "d"]
 	fmt.Println(args[1:])
 
 	// 命令行参数声明，分别是参数名称，默认值，说明。 -h 可以显示
