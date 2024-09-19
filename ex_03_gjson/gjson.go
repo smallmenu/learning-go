@@ -21,5 +21,10 @@ func main() {
 		}
 	`
 
-	fmt.Println(gjson.Get(jsonStr, "name"))
+	// gjson 提供了快速从 JSON 文档获取值的方法
+	fmt.Println(gjson.Get(jsonStr, "name.first"))
+
+	children := gjson.Get(jsonStr, "children.#")
+	fmt.Println(children)
+	fmt.Println(children.Type)
 }
