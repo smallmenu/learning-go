@@ -35,6 +35,7 @@ func main() {
 
 	// 如果获取的 key 不存在，则会返回 map 值类型即 value 的零值
 	notexist := n["a"]
+	fmt.Println(notexist)
 	fmt.Println(reflect.TypeOf(notexist))
 
 	for k, v := range n {
