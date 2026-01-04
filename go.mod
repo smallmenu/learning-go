@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/denisbrodbeck/machineid v1.0.1
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/shirou/gopsutil v3.21.11+incompatible
 	github.com/super-l/machine-code v0.0.0-20241118164150-8ceeb448c1b4
 	github.com/tidwall/gjson v1.14.4
