@@ -44,5 +44,4 @@ func main() {
 	s2json, e := json.Marshal(s2)
 	fmt.Println(e)
 	fmt.Println(string(s2json))
-
 }

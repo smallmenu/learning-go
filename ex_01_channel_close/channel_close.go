@@ -7,7 +7,6 @@ func main() {
 	done := make(chan bool)
 
 	// 模拟工作协程，使用 j, ok := <-jobs 接收数据，根据第二个值 ok， 如果 jobs 已经关闭，该值将是 false
-
 	go func() {
 		for {
 			j, ok := <-jobs
